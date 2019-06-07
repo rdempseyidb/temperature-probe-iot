@@ -144,6 +144,7 @@ void main(void) {
         lcd_puts(buf);
 
         wiz6100_puts("HTTP/1.0 200 OK\r\n");
+        wiz6100_puts("Connection: close\r\n");
         wiz6100_puts("Content-Type: application/json\r\n\r\n");
         sprintf(buf, "{\"temperature\": %d}", temp);
         wiz6100_puts(buf);

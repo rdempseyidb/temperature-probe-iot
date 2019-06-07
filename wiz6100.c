@@ -92,7 +92,8 @@ uint32_t wiz6100_read_ip()
 void wiz6100_init_server()
 {
     spi_write_one(Sn_MR, SOCK0R_BSB, Sn_MR_TCP4);
-    spi_write_two(Sn_PORTR, SOCK0R_BSB, 0x05, 0xdd); //1501
+    //set listen port
+    spi_write_two(Sn_PORTR, SOCK0R_BSB, 0, 80); //port 80
 }
 
 static uint16_t s0_tx_wr;
