@@ -27,8 +27,6 @@
 #define LCD_DISPLAY_MODE 0x0f //display on, underline on, blink
 #define LCD_FUNCTION_SET 0x28 //4bit, 2lines
 
-//extern void busywait();
-//extern void lcd_sendbyte(uint8_t b);
 extern void lcd_cmd(uint8_t cmd);
 extern void lcd_data(uint8_t data);
 extern void lcd_init();

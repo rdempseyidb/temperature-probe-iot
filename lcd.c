@@ -26,8 +26,8 @@
 #define RS_PIN PORTDbits.RD2
 #define EN_PIN PORTDbits.RD3
 
-#define EN_HI do { EN_PIN = 1; __delay_us(2); } while(0)
-#define EN_LOW do { EN_PIN = 0; __delay_us(2); } while(0)
+#define EN_HI do { EN_PIN = 1; __delay_us(1); } while(0)
+#define EN_LOW do { EN_PIN = 0; __delay_us(1); } while(0)
 
 static void busywait()
 {
@@ -51,20 +51,21 @@ static void busywait()
     LCDTRIS = 0x00;
 }
 
+#pragma warning disable 373
 static void lcd_sendbyte(uint8_t b)
 {
     uint8_t t;
 
     RW_PIN = 0;
 
-    t = b&0xf0U;
+    t = b&0xf0;
     LCDPORT |= t;
     t |= 0x0f;
     LCDPORT &= t;
     EN_HI;
     EN_LOW;
 
-    t = b<<4U;
+    t = b<<4;
     LCDPORT |= t;
     t |= 0x0f;
     LCDPORT &= t;
@@ -73,6 +74,7 @@ static void lcd_sendbyte(uint8_t b)
 
     busywait();
 }
+#pragma warning enable 373
 
 void lcd_cmd(uint8_t cmd)
 {

@@ -20,6 +20,7 @@
 
 #include "spi.h"
 
+#pragma warning disable 373
 uint8_t spi_read_one(uint16_t addr, uint8_t bsb)
 {
     uint8_t tmp;
@@ -181,3 +182,4 @@ void spi_write_four(uint16_t addr, uint8_t bsb, uint8_t b4, uint8_t b3, uint8_t 
     while (!SSPSTATbits.BF) {}
     tmp = SSPBUF;
 }
+#pragma warning enable 373
